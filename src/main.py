@@ -126,20 +126,19 @@ def pep(session):
         )
         dl_string = dl_tag.find(string='Status')
         pep_status_page = dl_string.parent.find_next_sibling('dd').string
-        if pep_status_page in status_sum:
-            status_sum[pep_status_page] += 1
-        if pep_status_page not in status_sum:
-            status_sum[pep_status_page] = 1
-        if pep_status_page not in EXPECTED_STATUS[preview_status]:
-            logging.info(
-                f'Несовпадающие статусы:\n'
-                f'{pep_link}\n'
-                f'Статус в карточке: {pep_status_page}\n'
-                f'Ожидаемые статусы: {EXPECTED_STATUS[preview_status]}\n'
-            )
+        status_sum[pep_status_page] = status_sum.get(pep_status_page, 0) + 1
+        try:
+            if pep_status_page not in EXPECTED_STATUS[preview_status]:
+                logging.info(
+                    f'Несовпадающие статусы:\n'
+                    f'{pep_link}\n'
+                    f'Статус в карточке: {pep_status_page}\n'
+                    f'Ожидаемые статусы: {EXPECTED_STATUS[preview_status]}\n'
+                )
+        except KeyError:
+            logging.error(f'Ошибка кода статуса {preview_status}')
         total += 1
-    for status in status_sum:
-        results.append((status, status_sum[status]))
+    results.extend(status_sum.items())
     results.append(('Total', total))
     return results
 
