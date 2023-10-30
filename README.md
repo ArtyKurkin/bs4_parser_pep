@@ -2,7 +2,7 @@
 
 [![Python](https://img.shields.io/badge/-Python-464646?style=flat&logo=Python&logoColor=ffffff&color=043A6B)](https://www.python.org/)
 [![BeautifulSoup4](https://img.shields.io/badge/-BeautifulSoup4-464646?style=flat&logo=BeautifulSoup4&logoColor=ffffff&color=043A6B)](https://www.crummy.com/software/BeautifulSoup/)
-## Описание
+## Описание:
 
 #### Парсер позволяет собирать данные обо все документах PEP, сравнивать статусы на страницах PEP, считать общее количество документов PEP и сохранять результаты в табличном виде в csv-файл.
 
